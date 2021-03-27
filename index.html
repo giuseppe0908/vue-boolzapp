@@ -9,40 +9,117 @@
   <body>
    <div id="root">
      <div class="bg-green">
-
      </div>
+
     <div class="container">
       <head>
         <nav>
-        <div class="nav-aside">
           <!-- <ul>
             <li v-for="contact in contacts">
               <img :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="">
             </li>
           </ul> -->
-          <img src="" alt="">
-          <ul id="flex-end">
-            <li><i class="fas fa-history"></i></li>
-            <li><i class="fas fa-comment-alt"></i></li>
-            <li><i class="fas fa-ellipsis-v"></i></li>
-          </ul>
-          <div class="notifiche">
-           <div class="bo">
-             <i class="fas fa-bell-slash"></i>
-           </div>
-           <p>Ricevi notifiche dei nuovi messaggi</p>
-           <a id="ulined">Attiva notifiche desktop</a>
-          </div>
-          <div class="nav">
+          <div class="nav-left">
+            <img class="img"src="./assets/img/avatar_5.jpg"alt="">
 
-
+            <ul class="flex-end">
+              <li><i class="fas fa-history"></i></li>
+              <li><i class="fas fa-comment-alt"></i></li>
+              <li><i class="fas fa-ellipsis-v"></i></li>
+            </ul>
           </div>
 
-        </div>
+          <div class="right">
+              <img class="img"src="./assets/img/avatar_5.jpg"alt="">
+            <div>
+              <ul class="flex-end">
+                <li><i class="fas fa-search"></i></li>
+                <li><i class="fas fa-paperclip"></i></li>
+                <li><i class="fas fa-ellipsis-v"></i></li>
+              </ul>
+            </div>
+          </div>
+
         </nav>
       </head>
+      <div class="nav-aside">
 
-    </div>
+          <div class="notifiche">
+             <div class="circol">
+               <i class="fas fa-bell-slash"></i>
+             </div>
+
+             <div class="ciao">
+               <p>Ricevi notifiche dei nuovi messaggi</p>
+               <a id="ulined" href="#">Attiva notifiche desktop</a>
+             </div>
+
+          </div>
+
+          <div class="cerca">
+            <i class="fas fa-search"></i>
+            <!-- <p>Cercao inizia una nuova chat</p> -->
+            <input type="text" name="" value=""placeholder="Cerca o inizia una nuova chat">
+          </div>
+
+          <div class="chat" v-for="contact in contacts">
+            <!-- <img class="img" src="./assets/img/avatar_1.jpg" alt=""> -->
+            <img class="img" :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="">
+            <div class="nome">
+              <!-- <p>michele</p> -->
+              <p>{{contact.name}}</p>
+            </div>
+            <div class="data">
+              <!-- <p>12/122/21</p> -->
+              <p>{{contact.data}}</p>
+            </div>
+          </div>
+      </div>
+   <!-- CHIUSURA SIDDE-BAR -->
+
+      <main>
+        <div class="bg-sfondo">
+          <div class="magico "v-for="(messaggio, i) in contacts[0].messages">
+            <div :class="(contacts[0].messages[i].status == 'received') ? 'received messaggi' : 'sent messaggi' " >
+
+              <p v-if="(contacts[0].messages[i].status == 'received') ? 'received messaggi' : 'sent messaggi' ">{{contacts[0].messages[i].text}}</p>
+              <p v-if="(contacts[0].messages[i].status == 'received') ? 'received messaggi' : 'sent messaggi' ">{{contacts[0].messages[i].date}}</p>
+
+            </div>
+
+            <!-- <div class="messaggi-dx messaggi sent">
+              <p>Ricordati di dargli da mangiare</p>
+            </div>
+
+            <div class="messaggi-sx messaggi received">
+              <p>Tutto fatto!</p>
+            </div>
+          </div> -->
+
+
+        </div>
+
+      </main>
+
+      <footer>
+
+        <div class="flex-start">
+          <i class="fas fa-smile"></i>
+          <input type="text" name="" value="" placeholder="scrivi un messaggio">
+        </div>
+
+       <div class=" ci">
+         <div class="ciao">
+           <i class="fas fa-microphone"></i>
+         </div>
+
+       </div>
+
+      </footer>
+
+     </div>
+
+
 
    </div>
 
