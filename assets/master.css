@@ -20,7 +20,9 @@ wit */
   margin: 0 auto;
   background-color: white;
   height: 85vh;
-  margin-top: -117px
+  /* height: 889px; */
+  margin-top: -117px;
+  position: relative;
   /* position: fixed;
   z-index: 2;
   top: 20px;
@@ -48,6 +50,10 @@ nav{
   justify-content: space-between;
   /* justify-content: space-around; */
   width: calc(100% - 400px);
+}
+.utente{
+  display: flex;
+  align-items: center;
 }
 
 .nav-aside{
@@ -131,14 +137,20 @@ main{
 
     /* position: relative; */
   padding-left: 400px;
+  padding-left: 400px;
+  display: flex;
+  flex-direction: row;
+
 }
 
 main > .bg-sfondo{
   position: absolute;
-  top: 113px;
-  width: calc(80% - 400px);
+  top: 80px;
+  height: calc(100% - 80px);
+  width: calc(100% - 400px);
   background-image: url("../assets/img/mine.jpg");
-  height: 729px;
+
+
   /* width: 656px; */
   /* width: 62%; */
 }
@@ -168,17 +180,18 @@ main > .bg-sfondo{
 .received{
     background-color: #FFFFFF;
     margin-left: 46px;
-    width: 150px;
+    margin-top: 20px;
+    width: 160px;
 }
 
 footer{
   /* padding-left: 418px; */
   height: 80px;
   position: absolute;
-  bottom: 90px;
+  bottom: 0px;
   background-color: #EBEEED;
   margin-left: 400px;
-  width: calc(80% - 400px);
+  width: calc(100% - 400px);
   display: flex;
   align-items: center;
 }

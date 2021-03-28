@@ -29,8 +29,12 @@
             </ul>
           </div>
 
-          <div class="right">
-              <img class="img"src="./assets/img/avatar_5.jpg"alt="">
+          <div class="right" >
+            <div class="utente"v-if="(user)">
+              <img class="img":src="'./assets/img/avatar' +  user.avatar + '.jpg'" alt="">
+              <span>{{user.name}}</span>
+            </div>
+
             <div>
               <ul class="flex-end">
                 <li><i class="fas fa-search"></i></li>
@@ -62,16 +66,17 @@
             <input type="text" name="" value=""placeholder="Cerca o inizia una nuova chat">
           </div>
 
-          <div class="chat" v-for="contact in contacts">
+          <div class="chat" v-for="contact in contacts" @click="click_utente(contact)">
             <!-- <img class="img" src="./assets/img/avatar_1.jpg" alt=""> -->
             <img class="img" :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="">
+
             <div class="nome">
               <!-- <p>michele</p> -->
               <p>{{contact.name}}</p>
-            </div>
+
             <div class="data">
               <!-- <p>12/122/21</p> -->
-              <p>{{contact.data}}</p>
+              <p></p>
             </div>
           </div>
       </div>
@@ -79,23 +84,14 @@
 
       <main>
         <div class="bg-sfondo">
-          <div class="magico "v-for="(messaggio, i) in contacts[0].messages">
-            <div :class="(contacts[0].messages[i].status == 'received') ? 'received messaggi' : 'sent messaggi' " >
+          <div class="magico "v-for="(messaggio) in user.messages">
+            <div :class="(messaggio.status == 'received') ? 'received messaggi' : 'sent messaggi' " >
 
-              <p v-if="(contacts[0].messages[i].status == 'received') ? 'received messaggi' : 'sent messaggi' ">{{contacts[0].messages[i].text}}</p>
-              <p v-if="(contacts[0].messages[i].status == 'received') ? 'received messaggi' : 'sent messaggi' ">{{contacts[0].messages[i].date}}</p>
+              <p v-if="(messaggio.status == 'received') ? 'received messaggi' : 'sent messaggi' ">{{messaggio.text}}</p>
+              <p v-if="(messaggio.status == 'received') ? 'received messaggi' : 'sent messaggi' ">{{messaggio.date}}</p>
 
             </div>
-
-            <!-- <div class="messaggi-dx messaggi sent">
-              <p>Ricordati di dargli da mangiare</p>
-            </div>
-
-            <div class="messaggi-sx messaggi received">
-              <p>Tutto fatto!</p>
-            </div>
-          </div> -->
-
+          </div>
 
         </div>
 
@@ -105,21 +101,21 @@
 
         <div class="flex-start">
           <i class="fas fa-smile"></i>
-          <input type="text" name="" value="" placeholder="scrivi un messaggio">
+          <input type="text" v-model="input" @keyup.enter="add(user)" placeholder="scrivi un messaggio">
         </div>
 
-       <div class=" ci">
-         <div class="ciao">
-           <i class="fas fa-microphone"></i>
-         </div>
+          <div class=" ci">
+             <div class="ciao">
+               <i class="fas fa-microphone"></i>
+             </div>
 
-       </div>
+          </div>
 
       </footer>
 
-     </div>
 
 
+    </div>
 
    </div>
 
