@@ -3,14 +3,23 @@ var app = new Vue({
     data:{
       contacts: contacts,
        user: [],
-      input:" ",
+      input:"",
+      input_search:"",
+      index_mex: -1,
+
     },
 
-     methods: {
+    methods: {
        click_utente: function (contact){
            this.user = contact,
            console.log(this.user);
        },
+       // getTime: function(data,i){
+       //   let date = new Date(data);
+       //   let hours = date.getHours();
+       //   let minuts = date.getMinutes();
+       //   return `${hours}:${minuts}`;
+       // },
        //aggiunta di un messaggio nella chat con data e risposta con set timeour
        add: function (user) {
    //creo date per prendermi l'ora attuale
@@ -52,6 +61,12 @@ var app = new Vue({
             }, 1000);
 
         }
+
+      },
+      remove:function(i){
+
+        // this.index_mex = i;
+        this.user.messages.splice(i, 1);
 
       },
     }

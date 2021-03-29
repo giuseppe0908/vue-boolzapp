@@ -30,7 +30,8 @@
           </div>
 
           <div class="right" >
-            <div class="utente"v-if="(user)">
+            <!-- todo sistemare -->
+            <div class="utente" v-if="(user)">
               <img class="img":src="'./assets/img/avatar' +  user.avatar + '.jpg'" alt="">
               <span>{{user.name}}</span>
             </div>
@@ -61,22 +62,25 @@
           </div>
 
           <div class="cerca">
-            <i class="fas fa-search"></i>
-            <!-- <p>Cercao inizia una nuova chat</p> -->
-            <input type="text" name="" value=""placeholder="Cerca o inizia una nuova chat">
+            <i class="fas fa-search" ></i>
+            <input type="text" v-model="input_search" placeholder="Cerca o inizia una nuova chat">
           </div>
 
-          <div class="chat" v-for="contact in contacts" @click="click_utente(contact)">
-            <!-- <img class="img" src="./assets/img/avatar_1.jpg" alt=""> -->
+          <div  class="chat" v-for="contact in contacts" @click="click_utente(contact)"
+          v-if="contact.name.toLowerCase().includes(input_search.toLowerCase())"
+          v-if="contact.messages.length !=0">
+          
             <img class="img" :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="">
 
             <div class="nome">
-              <!-- <p>michele</p> -->
+
               <p>{{contact.name}}</p>
+              <p>{{ contact.messages[contact.messages.length - 1].text }}</p>
+
 
             <div class="data">
-              <!-- <p>12/122/21</p> -->
-              <p></p>
+
+              <span>{{contact.messages[contact.messages.length - 1].date}}</span>
             </div>
           </div>
       </div>
@@ -84,16 +88,21 @@
 
       <main>
         <div class="bg-sfondo">
-          <div class="magico "v-for="(messaggio) in user.messages">
+          <div class="magico "v-for="(messaggio,i) in user.messages">
             <div :class="(messaggio.status == 'received') ? 'received messaggi' : 'sent messaggi' " >
 
               <p v-if="(messaggio.status == 'received') ? 'received messaggi' : 'sent messaggi' ">{{messaggio.text}}</p>
-              <p v-if="(messaggio.status == 'received') ? 'received messaggi' : 'sent messaggi' ">{{messaggio.date}}</p>
+              <p class="data">{{ messaggio.date }}</p>
+              <i class="fas fa-angle-down"></i>
+              <div class="lista">
+                <p>Message info</p>
+                <p @click="remove(i)">Delete message</p>
+              </div>
 
             </div>
           </div>
 
-        </div>
+        </div>s
 
       </main>
 
@@ -102,14 +111,8 @@
         <div class="flex-start">
           <i class="fas fa-smile"></i>
           <input type="text" v-model="input" @keyup.enter="add(user)" placeholder="scrivi un messaggio">
+          <i class="fas fa-microphone"></i>
         </div>
-
-          <div class=" ci">
-             <div class="ciao">
-               <i class="fas fa-microphone"></i>
-             </div>
-
-          </div>
 
       </footer>
 

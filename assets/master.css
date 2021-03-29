@@ -109,8 +109,9 @@ nav{
   margin-left: 20px;
   margin-right: 20px;
 }
-.cerca > p{
-  margin-left: 20px;
+.cerca > input{
+  width: 301px;
+  border: 1px solid black;
 }
 .chat{
   height: 100px;
@@ -125,22 +126,19 @@ nav{
   margin: 0 10px;
 }
 
-.chat .nome > p{
+/* .chat .nome > p{
  margin-top: -25px;
-}
+} */
 .chat .data > p{
   margin-left: -50px;
   margin-top: 10px;
 
 }
 main{
-
-    /* position: relative; */
   padding-left: 400px;
   padding-left: 400px;
   display: flex;
   flex-direction: row;
-
 }
 
 main > .bg-sfondo{
@@ -149,8 +147,6 @@ main > .bg-sfondo{
   height: calc(100% - 80px);
   width: calc(100% - 400px);
   background-image: url("../assets/img/mine.jpg");
-
-
   /* width: 656px; */
   /* width: 62%; */
 }
@@ -161,10 +157,6 @@ main > .bg-sfondo{
 
 }
 .messaggi{
-  /* display: flex; */
-  /* height: 32px; */
-  /* width: 100px; */
-  /* max-width: 200px; */
   border-radius: 6px;
   align-items: center;
   padding-left: 10px;
@@ -183,6 +175,30 @@ main > .bg-sfondo{
     margin-top: 20px;
     width: 160px;
 }
+/* .data{
+  text-align: right;
+} */
+
+/* main i{ */
+  /* display: flex;
+  justify-content: flex-end; */
+/* } */
+main .messaggi .lista{
+  display: none;
+  width: 100px;
+  background-color: white;
+}
+main .messaggi i{
+  display: none;
+}
+main .messaggi:hover i{
+  display: block;
+}
+main .messaggi:hover .lista{
+  display: block;
+}
+
+
 
 footer{
   /* padding-left: 418px; */
@@ -199,8 +215,9 @@ footer{
 
 .flex-start{
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   /* margin: 0 30px; */
+  width: 100%;
 }
 footer i{
   font-size: 35px;
@@ -208,19 +225,9 @@ footer i{
 }
 .flex-start input{
   border-radius: 15px;
-  width: 600px;
+  width: 80%;
 }
 /* .flex{
   display: flex;
   justify-content: flex-end;
 } */
-
-
-.ci{
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-}
-.ciao{
-
-}
