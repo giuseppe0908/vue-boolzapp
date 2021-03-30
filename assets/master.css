@@ -69,7 +69,7 @@ nav{
 
 .flex-end li i{
   margin: 0 10px;
-  font-size: 30px;
+  font-size: 25px;
 }
 .notifiche{
   height: 100px;
@@ -196,6 +196,9 @@ main .messaggi:hover i{
 }
 main .messaggi:hover .lista{
   display: block;
+}
+.lista > ul{
+  list-style: none;
 }
 
 

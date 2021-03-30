@@ -5,15 +5,23 @@ var app = new Vue({
        user: [],
       input:"",
       input_search:"",
+      index:0,
       index_mex: -1,
 
     },
 
     methods: {
-       click_utente: function (contact){
-           this.user = contact,
-           console.log(this.user);
-       },
+       // click_utente: function (contact){
+       //     this.user = contact,
+       //     console.log(this.user);
+       // },
+      //  last_acces:function(index) {
+      //    const message = this.contacts[index].messages;
+      //    const last_data = message.lenght - 1;
+      //
+      //   return message[last_data].date;
+      // },
+
        // getTime: function(data,i){
        //   let date = new Date(data);
        //   let hours = date.getHours();
@@ -21,7 +29,7 @@ var app = new Vue({
        //   return `${hours}:${minuts}`;
        // },
        //aggiunta di un messaggio nella chat con data e risposta con set timeour
-       add: function (user) {
+       add: function (index) {
    //creo date per prendermi l'ora attuale
          var date = new Date();
          var ora = date.getHours();
@@ -34,6 +42,7 @@ var app = new Vue({
          var data_tot =`${giorno}/${mese}/${anno} ${ora}:${minuti}:${secondi}`;
          // giorno+"/"+mese+"/"+ anno +" " +ora+":"+ minuti+":" + secondi;
          console.log(data_tot);
+         const index_now = this.index;
 
          if (this.input != " ") {
            let aggiunta = {
@@ -42,22 +51,22 @@ var app = new Vue({
             status:'sent',
             }
 
-            user.messages.push(aggiunta);
-            console.log(this.user.messages);
+            this.contacts[index_now].messages.push(aggiunta);
+
             this.input = " ";
 
-            setTimeout(function(){
+            setTimeout(() => {
               //ricreo data per prendermi il il secondo attuale
               var data_second = new Date();
               var secondi = data_second.getSeconds();
               var data_tot =`${giorno}/${mese}/${anno} ${ora}:${minuti}:${secondi}`;
               let ok = {
                 date:data_tot,
-                text: "ok",
+                text: "Ok!",
                 status:'received',
               }
               //aggiungo messaggio automatico
-              user.messages.push(ok);
+              this.contacts[index_now].messages.push(ok);
             }, 1000);
 
         }
@@ -65,8 +74,7 @@ var app = new Vue({
       },
       remove:function(i){
 
-        // this.index_mex = i;
-        this.user.messages.splice(i, 1);
+        this.contacts[this.index].messages.splice(i, 1);
 
       },
     }
