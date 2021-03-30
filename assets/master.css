@@ -31,6 +31,9 @@ wit */
   /* transform: translate(50%, 50%);130px;236 */
 
 }
+i{
+  color:grey;
+}
 nav{
   height: 80px;
   background-color: #EBEEED;
@@ -45,18 +48,22 @@ nav{
 }
 
 .right{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  /* justify-content: space-around; */
   width: calc(100% - 400px);
 }
 .utente{
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+.img-name{
+    display: flex;
+    align-items: center;
+}
+#color{
+  color: lightgrey;
 }
 
-.nav-aside{
+.side-bar{
   width: 400px;
   /* background-color: black; */
   height: 100vh;
@@ -73,8 +80,6 @@ nav{
 }
 .notifiche{
   height: 100px;
-  border-right: 1px solid black;
-  /* margin-top: 42px; */
   background-color: #9DE1FF;
   display: flex;
   align-items: center;
@@ -95,11 +100,13 @@ nav{
 #unlined{
  color: black;
 }
-.ciao{
+.ricevi-notifiche{
   margin-left: 17px;
 }
+#ulined{
+  color: black;
+}
 .cerca{
-  border: 1px solid black;
   height: 50px;
   display:flex;
   align-items: center;
@@ -118,7 +125,7 @@ nav{
   /* background-color: black; */
   display: flex;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid lightgrey;
 }
 .img{
   height: 50px;
@@ -126,9 +133,6 @@ nav{
   margin: 0 10px;
 }
 
-/* .chat .nome > p{
- margin-top: -25px;
-} */
 .chat .data > p{
   margin-left: -50px;
   margin-top: 10px;
@@ -159,8 +163,10 @@ main > .bg-sfondo{
 .messaggi{
   border-radius: 6px;
   align-items: center;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 0px 10px;
+}
+.messaggi p{
+  padding: 5px 0px;
 }
 
 .sent{
@@ -183,22 +189,29 @@ main > .bg-sfondo{
   /* display: flex;
   justify-content: flex-end; */
 /* } */
-main .messaggi .lista{
-  display: none;
+main .messaggi .show{
+
   width: 100px;
   background-color: white;
 }
 main .messaggi i{
   display: none;
 }
+.lista{
+  display: none;
+}
 main .messaggi:hover i{
   display: block;
 }
-main .messaggi:hover .lista{
+/* main .messaggi:hover .lista{
   display: block;
-}
-.lista > ul{
-  list-style: none;
+
+} */
+.show{
+display: block;
+margin-top: 5px;
+position: fixed;
+z-index: 2;
 }
 
 

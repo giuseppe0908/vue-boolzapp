@@ -7,18 +7,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   </head>
   <body>
+    <!-- conteiner root per far funzionare vue -->
+
    <div id="root">
      <div class="bg-green">
      </div>
-
+  <!-- conteiner-->
     <div class="container">
       <head>
+        <!-- nav-bar-->
         <nav>
-          <!-- <ul>
-            <li v-for="contact in contacts">
-              <img :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="">
-            </li>
-          </ul> -->
+          <!-- nav-bar parte sinistra-->
           <div class="nav-left">
             <img class="img"src="./assets/img/avatar_5.jpg"alt="">
 
@@ -28,18 +27,16 @@
               <li><i class="fas fa-ellipsis-v"></i></li>
             </ul>
           </div>
-
+        <!-- nav-bar parte destra-->
           <div class="right" >
-            <!-- todo sistemare v-if="(user)"-->
-            <div class="utente" >
-              <img class="img":src="'./assets/img/avatar' +  contacts[index].avatar + '.jpg'" alt="">
-              <span>{{contacts[index].name}}</span>
-              <div class="last-info">
-                <!-- <p>Ultimo accesso {{ last_acces(index) }} </p> -->
-              </div>
-            <!-- <span>{{ contacts.messages[contacts.messages.length - 1].date }}</span> -->
+            <!-- compare imagine a seconda del click della chat-->
 
-            </div>
+            <div class="utente" v-if="contacts[index].messages.length !=0">
+              <div class="img-name">
+                <img class="img":src="'./assets/img/avatar' +  contacts[index].avatar + '.jpg'" alt="">
+                <span>{{contacts[index].name}}
+                <p id="color"v-if="contacts[index].messages.length > 0">Ultimo accesso {{ last_acces(index) }} </p></span>
+              </div>
 
             <div>
               <ul class="flex-end">
@@ -48,51 +45,44 @@
                 <li><i class="fas fa-ellipsis-v"></i></li>
               </ul>
             </div>
+            </div>
           </div>
-
         </nav>
       </head>
-      <div class="nav-aside">
-
+      <!--chiusura della nav-bar-->
+      <!-- apertura side-bar-->
+      <div class="side-bar">
+        <!-- Section notifiche-->
           <div class="notifiche">
              <div class="circol">
                <i class="fas fa-bell-slash"></i>
              </div>
 
-             <div class="ciao">
+             <div class="ricevi-notifiche">
                <p>Ricevi notifiche dei nuovi messaggi</p>
                <a id="ulined" href="#">Attiva notifiche desktop</a>
              </div>
 
           </div>
-
+        <!-- Section ricerca chat-->
           <div class="cerca">
             <i class="fas fa-search" ></i>
             <input type="text" v-model="input_search" placeholder="Cerca o inizia una nuova chat">
           </div>
-  <!-- @click="click_utente(contact) v-if="(i == index)""-->
+
+      <!-- Section  contatti usando v-for per prendere le immaginicontenute nell oggetto contacts -->
           <div class="chat" v-for="(contact,i) in contacts"
-          @click="index = i"
-
-          v-if="contact.name.toLowerCase().includes(input_search.toLowerCase())"
-          v-if="contact.messages.length !=0">
-
+            @click="index = i"
+            v-if="contact.name.toLowerCase().includes(input_search.toLowerCase()) && contact.messages.length !=0">
             <img class="img" :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="">
-
             <div class="nome">
-
               <p>{{contact.name}}</p>
-              <p>{{ contact.messages[contact.messages.length - 1].text }}</p>
+              <p v-if="contact.messages.length > 0">{{ contact.messages[contact.messages.length - 1].text }}</p>
 
-
-            <!-- <div class="data">
-
-              <span>{{contact.messages[contact.messages.length - 1].date}}</span>
-            </div> -->
           </div>
       </div>
    <!-- CHIUSURA SIDDE-BAR -->
-
+   <!-- APERTURA MAIN  chat-->
       <main>
         <div class="bg-sfondo">
           <div class="magico "v-for="(messaggio,i) in contacts[index].messages">
@@ -100,33 +90,26 @@
 
               <p v-if="(messaggio.status == 'received') ? 'received messaggi' : 'sent messaggi' ">{{messaggio.text}}</p>
               <p class="data">{{ messaggio.date }}</p>
-              <i class="fas fa-angle-down"></i>
-              <div class="lista">
+              <i class="fas fa-angle-down" @click="lista(i)"></i>
+              <div
+              :class= "(show == true && i == indice) ? 'show' : 'lista'">
                 <p>Message info</p>
                 <p @click="remove(i)">Delete message</p>
               </div>
 
             </div>
           </div>
-
-        </div>s
-
+        </div>
       </main>
 
       <footer>
-
         <div class="flex-start">
           <i class="fas fa-smile"></i>
-          <input type="text" v-model="input" @keyup.enter="add" placeholder="scrivi un messaggio">
+          <input type="text" v-model="input" @keyup.enter="add" placeholder="Scrivi un messaggio">
           <i class="fas fa-microphone"></i>
         </div>
-
       </footer>
-
-
-
     </div>
-
    </div>
 
 
