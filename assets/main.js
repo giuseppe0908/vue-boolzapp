@@ -8,6 +8,7 @@ var app = new Vue({
       index:0,
       indice: -1,
       show: false,
+      dark: false,
     },
 
     methods: {
@@ -71,9 +72,9 @@ var app = new Vue({
       },
       //CREO LA FUONZIONE PER FAR APPARIRE IL DROPDOWN
       lista:function (i) {
-        console.log('cis');
+
         this.indice = i;
-        this.show = !this.show;
+        this.show = true;
         console.log("deve essere true per comparires"+this.show);
       },
       //CREO LA FUONZIONE PER  ELIMINARE IL MESSAGGIO
@@ -81,6 +82,11 @@ var app = new Vue({
         this.contacts[this.index].messages.splice(i, 1);
         console.log(this.contacts[this.index].messages);
 
+      },
+      //CREO LA FUONZIONE PER AGGIUNGERE MODALITA DARK-MODE
+      dark_mod:function(){
+
+        this.dark = !this.dark;
       },
     }
 

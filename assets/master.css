@@ -40,6 +40,13 @@ nav{
   display: flex;
   align-items: center;
 }
+/*--- DARK-MODE ---*/
+.dark{
+  background-color: black;
+}
+/*--- DARK-MODE ---*/
+
+
 .nav-left{
   width: 400px;
   display: flex;
@@ -55,6 +62,9 @@ nav{
   align-items: center;
   justify-content: space-between;
 }
+.dark .img-name > span{
+  color: white;
+}
 .img-name{
     display: flex;
     align-items: center;
@@ -65,8 +75,7 @@ nav{
 
 .side-bar{
   width: 400px;
-  /* background-color: black; */
-  height: 100vh;
+  height: 77vh;
 }
 .flex-end{
   list-style: none;
@@ -90,8 +99,20 @@ nav{
   width: 50px;
   background-color: white;
   margin-left: 10px;
-
 }
+/*--- DARK-MODE ---*/
+.notifiche .dark{
+  /* background-color: black; */
+  border-radius: 50px;
+  height: 50px;
+  width: 50px;
+  margin-left: 10px;
+}
+.notifiche .dark >i.fa-bell-slash{
+  color: red;
+}
+/*--- DARK-MODE ---*/
+
 .notifiche i{
   font-size: 20px;
   margin-left: 12px;
@@ -106,19 +127,28 @@ nav{
 #ulined{
   color: black;
 }
+.ricerca{
+  border: 1px solid white;
+}
 .cerca{
   height: 50px;
   display:flex;
   align-items: center;
-
 }
-.cerca > i{
+.ricerca > .dark{
+  height: 50px;
+  display:flex;
+  align-items: center;
+}
+
+.ricerca  i{
   margin-left: 20px;
   margin-right: 20px;
 }
-.cerca > input{
+.ricerca  input{
   width: 301px;
-  border: 1px solid black;
+  border: 1px solid white;
+  color: white;
 }
 .chat{
   height: 100px;
@@ -127,17 +157,29 @@ nav{
   align-items: center;
   border: 1px solid lightgrey;
 }
+/*--- DARK-MODE ---*/
+.contatti .dark{
+  height: 100px;
+  display: flex;
+  align-items: center;
+  border: 1px solid white;
+}
+ .dark .nome  p{
+   /* display: flex; */
+  color: white;
+}
+/*--- DARK-MODE ---*/
 .img{
   height: 50px;
   border-radius: 27px;
   margin: 0 10px;
 }
 
-.chat .data > p{
+/* .chat .data > p{
   margin-left: -50px;
   margin-top: 10px;
 
-}
+} */
 main{
   padding-left: 400px;
   padding-left: 400px;
@@ -153,6 +195,13 @@ main > .bg-sfondo{
   background-image: url("../assets/img/mine.jpg");
   /* width: 656px; */
   /* width: 62%; */
+}
+main > .dark{
+  position: absolute;
+  top: 80px;
+  height: calc(100% - 80px);
+  width: calc(100% - 400px);
+  background-image: url("https://www.wallpapertip.com/wmimgs/84-842520_whatsapp-default-wallpaper-black.jpg");
 }
 .magico{
   display: flex;
@@ -175,22 +224,26 @@ main > .bg-sfondo{
     margin-top: 20px;
     margin-left: auto;
 }
+.dark .sent {
+  background-color: darkgrey;
+  color: white;
+}
 .received{
     background-color: #FFFFFF;
     margin-left: 46px;
     margin-top: 20px;
     width: 160px;
 }
-/* .data{
-  text-align: right;
-} */
+.dark .received {
+  background-color: #2C2C2E;
+  color: white;
+}
+.dark .sent .show, .dark .received .show{
+  background-color: black;
 
-/* main i{ */
-  /* display: flex;
-  justify-content: flex-end; */
-/* } */
+}
+
 main .messaggi .show{
-
   width: 100px;
   background-color: white;
 }
@@ -242,6 +295,10 @@ footer i{
 .flex-start input{
   border-radius: 15px;
   width: 80%;
+}
+.dark .flex-start input{
+  background-color: #2C2C2E;
+  color: white;
 }
 /* .flex{
   display: flex;

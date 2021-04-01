@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="./assets/master.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   </head>
+
   <body>
     <!-- conteiner root per far funzionare vue -->
 
@@ -16,12 +17,14 @@
     <div class="container">
       <head>
         <!-- nav-bar-->
-        <nav>
+        <nav :class="(dark == true) ? 'dark' : ''">
           <!-- nav-bar parte sinistra-->
           <div class="nav-left">
             <img class="img"src="./assets/img/avatar_5.jpg"alt="">
 
             <ul class="flex-end">
+            <!-- AGGIUNTA TASTO DADRK MODE -->
+              <li><i class="fas fa-adjust" @click="dark_mod"></i></li>
               <li><i class="fas fa-history"></i></li>
               <li><i class="fas fa-comment-alt"></i></li>
               <li><i class="fas fa-ellipsis-v"></i></li>
@@ -34,12 +37,13 @@
             <div class="utente" v-if="contacts[index].messages.length !=0">
               <div class="img-name">
                 <img class="img":src="'./assets/img/avatar' +  contacts[index].avatar + '.jpg'" alt="">
-                <span>{{contacts[index].name}}
-                <p id="color"v-if="contacts[index].messages.length > 0">Ultimo accesso {{ last_acces(index) }} </p></span>
+                <span >{{contacts[index].name}}
+                <p id="color" v-if="contacts[index].messages.length > 0">Ultimo accesso {{ last_acces(index) }} </p></span>
               </div>
 
             <div>
               <ul class="flex-end">
+
                 <li><i class="fas fa-search"></i></li>
                 <li><i class="fas fa-paperclip"></i></li>
                 <li><i class="fas fa-ellipsis-v"></i></li>
@@ -50,11 +54,12 @@
         </nav>
       </head>
       <!--chiusura della nav-bar-->
+
       <!-- apertura side-bar-->
-      <div class="side-bar">
+      <div :class="(dark == true) ? 'dark side-bar' : ''">
         <!-- Section notifiche-->
           <div class="notifiche">
-             <div class="circol">
+             <div :class="(dark == true) ? 'dark' : 'circol' ">
                <i class="fas fa-bell-slash"></i>
              </div>
 
@@ -65,13 +70,19 @@
 
           </div>
         <!-- Section ricerca chat-->
-          <div class="cerca">
+        <section class="ricerca">
+          <div :class="(dark == true) ? 'dark' : 'cerca'  ">
             <i class="fas fa-search" ></i>
-            <input type="text" v-model="input_search" placeholder="Cerca o inizia una nuova chat">
+            <input :class="(dark == true) ? 'dark' : '' " type="text" v-model="input_search" placeholder="Cerca o inizia una nuova chat">
           </div>
+        </section>
+
 
       <!-- Section  contatti usando v-for per prendere le immaginicontenute nell oggetto contacts -->
-          <div class="chat" v-for="(contact,i) in contacts"
+
+
+        <section class="contatti">
+          <div :class="(dark == true) ? 'dark' : 'chat' "  v-for="(contact,i) in contacts"
             @click="index = i"
             v-if="contact.name.toLowerCase().includes(input_search.toLowerCase()) && contact.messages.length !=0">
             <img class="img" :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="">
@@ -79,16 +90,18 @@
               <p>{{contact.name}}</p>
               <p v-if="contact.messages.length > 0">{{ contact.messages[contact.messages.length - 1].text }}</p>
 
+            </div>
           </div>
-      </div>
+        </section>
+
    <!-- CHIUSURA SIDDE-BAR -->
    <!-- APERTURA MAIN  chat-->
       <main>
-        <div class="bg-sfondo">
+        <div :class="(dark == true) ? 'dark' : 'bg-sfondo' ">
           <div class="magico "v-for="(messaggio,i) in contacts[index].messages">
             <div :class="(messaggio.status == 'received') ? 'received messaggi' : 'sent messaggi' " >
 
-              <p v-if="(messaggio.status == 'received') ? 'received messaggi' : 'sent messaggi' ">{{messaggio.text}}</p>
+              <p>{{messaggio.text}}</p>
               <p class="data">{{ messaggio.date }}</p>
               <i class="fas fa-angle-down" @click="lista(i)"></i>
               <div
@@ -102,7 +115,7 @@
         </div>
       </main>
 
-      <footer>
+      <footer :class="(dark == true) ? 'dark' : 'bg-sfondo' ">
         <div class="flex-start">
           <i class="fas fa-smile"></i>
           <input type="text" v-model="input" @keyup.enter="add" placeholder="Scrivi un messaggio">
