@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>boolzapp</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com/%22%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/master.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   </head>
@@ -10,16 +14,18 @@
   <body>
     <!-- conteiner root per far funzionare vue -->
 
-   <div id="root">
+   <div id="root" @click= "indice = null" >
      <div class="bg-green">
      </div>
   <!-- conteiner-->
     <div class="container">
-      <head>
+      <header>
         <!-- nav-bar-->
         <nav :class="(dark == true) ? 'dark' : ''">
           <!-- nav-bar parte sinistra-->
-          <div class="nav-left">
+          <div class="nav-left"
+          :class="sinistra"
+          >
             <img class="img"src="./assets/img/avatar_5.jpg"alt="">
 
             <ul class="flex-end">
@@ -31,7 +37,7 @@
             </ul>
           </div>
         <!-- nav-bar parte destra-->
-          <div class="right" >
+          <div class="right" :class="(destra) ? 'active' : '' " >
             <!-- compare imagine a seconda del click della chat-->
 
             <div class="utente" v-if="contacts[index].messages.length !=0">
@@ -52,14 +58,15 @@
             </div>
           </div>
         </nav>
-      </head>
+      </header>
       <!--chiusura della nav-bar-->
 
       <!-- apertura side-bar-->
-      <div :class="(dark == true) ? 'dark side-bar' : ''">
+      <div :class="(dark == true) ? 'side-bardark side-bar' : 'side-bar'"
+       :class="(sinistra) ? 'active' : '' ">
         <!-- Section notifiche-->
           <div class="notifiche">
-             <div :class="(dark == true) ? 'dark' : 'circol' ">
+             <div :class="(dark == true) ? 'side-bardark' : 'circol' ">
                <i class="fas fa-bell-slash"></i>
              </div>
 
@@ -71,7 +78,7 @@
           </div>
         <!-- Section ricerca chat-->
         <section class="ricerca">
-          <div :class="(dark == true) ? 'dark' : 'cerca'  ">
+          <div :class="(dark == true) ? 'side-bardark' : 'cerca'  ">
             <i class="fas fa-search" ></i>
             <input :class="(dark == true) ? 'dark' : '' " type="text" v-model="input_search" placeholder="Cerca o inizia una nuova chat">
           </div>
@@ -79,11 +86,9 @@
 
 
       <!-- Section  contatti usando v-for per prendere le immaginicontenute nell oggetto contacts -->
-
-
         <section class="contatti">
-          <div :class="(dark == true) ? 'dark' : 'chat' "  v-for="(contact,i) in contacts"
-            @click="index = i"
+          <div :class="(dark == true) ? 'side-bardark' : 'chat' "  v-for="(contact,i) in contacts"
+            @click="mostra(i)"
             v-if="contact.name.toLowerCase().includes(input_search.toLowerCase()) && contact.messages.length !=0">
             <img class="img" :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="">
             <div class="nome">
@@ -96,16 +101,16 @@
 
    <!-- CHIUSURA SIDDE-BAR -->
    <!-- APERTURA MAIN  chat-->
-      <main>
+      <main :class="(destra) ? 'active' : '' ">
         <div :class="(dark == true) ? 'dark' : 'bg-sfondo' ">
           <div class="magico "v-for="(messaggio,i) in contacts[index].messages">
             <div :class="(messaggio.status == 'received') ? 'received messaggi' : 'sent messaggi' " >
 
               <p>{{messaggio.text}}</p>
               <p class="data">{{ messaggio.date }}</p>
-              <i class="fas fa-angle-down" @click="lista(i)"></i>
+              <i class="fas fa-angle-down" @click.stop="indice = i"></i>
               <div
-              :class= "(show == true && i == indice) ? 'show' : 'lista'">
+              :class= "(indice == i) ? 'show' : 'lista'">
                 <p>Message info</p>
                 <p @click="remove(i)">Delete message</p>
               </div>
@@ -115,7 +120,8 @@
         </div>
       </main>
 
-      <footer :class="(dark == true) ? 'dark' : 'bg-sfondo' ">
+      <footer :class="(dark == true) ? 'dark-footer' : 'bg-sfondo' "
+      :class="(destra) ? 'active' : '' ">
         <div class="flex-start">
           <i class="fas fa-smile"></i>
           <input type="text" v-model="input" @keyup.enter="add" placeholder="Scrivi un messaggio">
