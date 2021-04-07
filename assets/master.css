@@ -20,6 +20,12 @@ body{
   background-color: white;
   margin-top: -117px;
   position: relative;
+  height: 77vh;
+  box-shadow: 1px 1px 4px 4px #888888;
+}
+/*--- DARK-MODE ---*/
+.dark .container{
+    background-color: #141c21;
 }
 i{
   color:grey;
@@ -33,11 +39,11 @@ nav{
 }
 
 /*--- DARK-MODE ---*/
-.dark{
+
+.dark nav{
   background-color:#2b2f32;
 }
 /*---#2a2f32 #090F12DARK-MODE #1E2428--*/
-
 
 .nav-left{
   width: 400px;
@@ -71,12 +77,12 @@ nav{
 
 .side-bar{
   width: 400px;
-  height: 77vh;
   overflow-y: scroll;
   flex-wrap: wrap;
+  position: fixed;
 }
 
-.side-bardark{
+ .dark .side-bar {
   background-color: #141c21;
 }
 
@@ -104,15 +110,23 @@ nav{
   background-color: white;
   margin-left: 10px;
 }
+
 /*--- DARK-MODE ---*/
-.notifiche .side-bardark{
+.dark .notifiche{
+  background-color: #095373;
+}
+.dark .notifiche .side-bar{
 
   border-radius: 50px;
   height: 50px;
   width: 50px;
   margin-left: 10px;
 }
-.notifiche .side-bardark >i.fa-bell-slash{
+.dark .side-bar .notifiche .circol{
+  background-color:#2b2f32;
+}
+
+.dark .notifiche .circol >i.fa-bell-slash{
   color: red;
 }
 /*--- DARK-MODE ---*/
@@ -145,7 +159,7 @@ nav{
   align-items: center;
 }
 
-.ricerca > .side-bardark{
+.dark .ricerca .cerca{
   height: 50px;
   display:flex;
   align-items: center;
@@ -165,60 +179,67 @@ nav{
     padding-left: 16px;
 }
 /*--- DARK-MODE ---*/
-.ricerca .side-bardark input {
+.dark .ricerca .cerca input {
   color: white;
+    background-color:#2b2f32;
 }
 /*--- DARK-MODE ---*/
 .chat{
   height: 100px;
-  /* background-color: black; */
   display: flex;
   align-items: center;
   border-bottom: 1px solid lightgrey;
 }
 /*--- DARK-MODE ---*/
-.contatti .side-bardark{
+ .dark .contatti .chat {
   height: 100px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid lightgrey;
 }
- .side-bardark .nome  p{
-   /* display: flex; */
+  .dark .chat .nome  p{
   color: white;
 }
+.dark .chat .nome span.ora{
+  color: lightgrey;
+}
 /*--- DARK-MODE ---*/
+
 .img{
   height: 50px;
   border-radius: 27px;
   margin: 0 10px;
 }
+.contatti .chat .nome{
+  width: 100%;
+}
+.contatti .chat .nome > span.ora{
+  margin-top: -30px;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 15px;
+}
+
 
 main{
-  padding-left: 400px;
-  padding-left: 400px;
   display: flex;
   flex-direction: row;
+  padding-left: 400px;
+  height: calc(100% - 160px);
 }
 
 main > .bg-sfondo{
-  position: absolute;
-  top: 80px;
-  height: calc(100% - 80px);
-  width: calc(100% - 400px);
   background-image: url("../assets/img/mine.jpg");
   overflow-y: scroll;
   flex-wrap: wrap;
+  width: 100%;
 }
 
-main > .dark{
-  position: absolute;
-  top: 80px;
-  height: calc(100% - 80px);
-  width: calc(100% - 400px);
+.dark main .bg-sfondo{
   background-image: url("https://www.wallpapertip.com/wmimgs/84-842520_whatsapp-default-wallpaper-black.jpg");
   overflow-y: scroll;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .magico{
@@ -238,6 +259,10 @@ main > .dark{
 
 .nome > p:last-child , .messaggi .data{
   color: gray;
+}
+.messaggi p.data{
+  display: flex;
+  justify-content: flex-end;
 }
 
 .sent{
@@ -269,11 +294,12 @@ main > .dark{
 }
 
 main .messaggi .show{
-  /* width: 100px; */
   background-color: white;
+  height: 81px;
+  margin-left: 84px;
 }
 main .messaggi .show p{
-  padding: 0 10px;
+  padding: 10px 10px;
 }
 
 
@@ -287,35 +313,32 @@ main .messaggi i{
 
 main .messaggi:hover i{
   display: block;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .show{
-display: block;
-margin-top: 5px;
-position: fixed;
-z-index: 2;
+  display: block;
+  margin-top: 5px;
+  position: fixed;
+  z-index: 2;
 }
 
 footer{
-  /* padding-left: 418px; */
   height: 80px;
-  position: absolute;
-  bottom: 0px;
   background-color: #EBEEED;
   margin-left: 400px;
-  width: calc(100% - 400px);
   display: flex;
   align-items: center;
 }
-.dark-footer{
+.dark footer{
   background-color: #1f2428;
 }
-
 
 .flex-start{
   display: flex;
   justify-content: space-between;
-  /* margin: 0 30px; */
+
   width: 100%;
 }
 
@@ -330,7 +353,7 @@ footer i{
   padding-left: 16px;
 }
 
-.dark-footer .flex-start input{
+.dark footer .flex-start input{
   background-color:#363a3f;
   /*#2C2C2E;  323739*/
   color: white;
@@ -349,13 +372,9 @@ footer i{
       width: 189px;
   }main {
     padding-left: 300px;
-  }main > .dark{
-    width: calc(100% - 300px);
-  }main > .bg-sfondo{
-    width: calc(100% - 300px);
+    height: calc(100% - 160px);
   }footer{
     margin-left: 300px;
-    width: calc(100% - 300px);
   }
 }
 
@@ -378,23 +397,71 @@ footer i{
     margin-top: 12px;
   }main {
     padding-left: 250px;
-  }main > .dark{
-    width: calc(100% - 250px);
-  }main > .bg-sfondo{
-    width: calc(100% - 250px);
   }footer{
     margin-left: 250px;
-    width: calc(100% - 250px);
+  }
+}
+
+@media screen and ( min-width: 768px) {
+  .right .utente i{
+    display: none;
   }
 }
 
 @media screen and ( max-width: 767px) {
-  .nav-left, .side-bar, .right, main, footer{
+  .nav-left, .side-bar, .right, main, footer, .dark{
     display: none;
     width: 100%;
   }
-.container nav .nav-left.active, .side-bar.active, .right.active, main.active, footer.active{
+.nav-left.active, .side-bar.active, .right.active, main.active, footer.active, .dark{
     display: block;
   }
-
+  .side-bar.active{
+    position: static;
+  }
+   .side-bar .ricerca input{
+    width: 251px;
+  }.circol{
+    height: 40px;
+    width: 40px;
+  }
+  .notifiche i{
+    margin-left: 8px;
+    margin-top: 10px;
+  }
+  .nav-left.active{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  main.active{
+   padding-left: 0;
+ }
+ .bg-sfondo{
+   height: 100%;
+ }
+ footer.active{
+   margin-left: 0;
+   display: flex;
+   align-items: center;
+ }
+}
+@media screen and ( max-width: 540px){
+  .container{
+    min-height: 88vh;
+  }
+}
+@media screen and ( max-width: 375px){
+  .container{
+    min-height: 108vh;
+  }
+  p#color{
+    display: none;
+  }
+  .sent{
+    margin-right: 10px;
+  }
+  .received{
+    margin-left: 10px;
+  }
 }

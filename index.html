@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>boolzapp</title>
+    <title>Boolzapp</title>
+    <link rel="icon" href="./assets/img/whatsapp-logo.png" type="img/icon type">
     <link rel="preconnect" href="https://fonts.gstatic.com/%22%3E">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/master.css">
@@ -14,18 +14,16 @@
   <body>
     <!-- conteiner root per far funzionare vue -->
 
-   <div id="root" @click= "indice = null" >
+   <div id="root":class="(dark) ? 'dark' : '' " @click= "indice = null" >
      <div class="bg-green">
      </div>
   <!-- conteiner-->
     <div class="container">
-      <header>
-        <!-- nav-bar-->
-        <nav :class="(dark == true) ? 'dark' : ''">
+      <header >
+        <nav >
           <!-- nav-bar parte sinistra-->
           <div class="nav-left"
-          :class="sinistra"
-          >
+          :class="(sinistra) ? 'active' : 'cosa' ">
             <img class="img"src="./assets/img/avatar_5.jpg"alt="">
 
             <ul class="flex-end">
@@ -42,6 +40,7 @@
 
             <div class="utente" v-if="contacts[index].messages.length !=0">
               <div class="img-name">
+                <i class="fas fa-arrow-left" @click="lista_mex"></i>
                 <img class="img":src="'./assets/img/avatar' +  contacts[index].avatar + '.jpg'" alt="">
                 <span >{{contacts[index].name}}
                 <p id="color" v-if="contacts[index].messages.length > 0">Ultimo accesso {{ last_acces(index) }} </p></span>
@@ -62,11 +61,13 @@
       <!--chiusura della nav-bar-->
 
       <!-- apertura side-bar-->
-      <div :class="(dark == true) ? 'side-bardark side-bar' : 'side-bar'"
-       :class="(sinistra) ? 'active' : '' ">
-        <!-- Section notifiche-->
+
+
+      <div class="side-bar"
+        :class="(sinistra) ? 'active' : 'cosa' ">
+        <!-- Section notifiche -->
           <div class="notifiche">
-             <div :class="(dark == true) ? 'side-bardark' : 'circol' ">
+             <div class="circol" >
                <i class="fas fa-bell-slash"></i>
              </div>
 
@@ -76,38 +77,39 @@
              </div>
 
           </div>
-        <!-- Section ricerca chat-->
+        <!-- Section ricerca chat  -->
         <section class="ricerca">
-          <div :class="(dark == true) ? 'side-bardark' : 'cerca'  ">
+          <div class= "cerca">
             <i class="fas fa-search" ></i>
-            <input :class="(dark == true) ? 'dark' : '' " type="text" v-model="input_search" placeholder="Cerca o inizia una nuova chat">
+            <input type="text" v-model="input_search" placeholder="Cerca o inizia una nuova chat">
           </div>
         </section>
 
 
       <!-- Section  contatti usando v-for per prendere le immaginicontenute nell oggetto contacts -->
         <section class="contatti">
-          <div :class="(dark == true) ? 'side-bardark' : 'chat' "  v-for="(contact,i) in contacts"
+          <div class="chat"  v-for="(contact,i) in contacts"
             @click="mostra(i)"
             v-if="contact.name.toLowerCase().includes(input_search.toLowerCase()) && contact.messages.length !=0">
             <img class="img" :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="">
             <div class="nome">
               <p>{{contact.name}}</p>
               <p v-if="contact.messages.length > 0">{{ contact.messages[contact.messages.length - 1].text }}</p>
-
+              <span class="ora">{{ ora_minuti(contact.messages[contact.messages.length - 1].date) }}</span>
             </div>
           </div>
         </section>
+      </div>
 
    <!-- CHIUSURA SIDDE-BAR -->
-   <!-- APERTURA MAIN  chat-->
+   <!-- APERTURA MAIN -->
       <main :class="(destra) ? 'active' : '' ">
-        <div :class="(dark == true) ? 'dark' : 'bg-sfondo' ">
+        <div class="bg-sfondo">
           <div class="magico "v-for="(messaggio,i) in contacts[index].messages">
             <div :class="(messaggio.status == 'received') ? 'received messaggi' : 'sent messaggi' " >
 
               <p>{{messaggio.text}}</p>
-              <p class="data">{{ messaggio.date }}</p>
+              <p class="data">{{ ora_minuti(messaggio.date) }}</p>
               <i class="fas fa-angle-down" @click.stop="indice = i"></i>
               <div
               :class= "(indice == i) ? 'show' : 'lista'">
@@ -120,7 +122,7 @@
         </div>
       </main>
 
-      <footer :class="(dark == true) ? 'dark-footer' : 'bg-sfondo' "
+      <footer
       :class="(destra) ? 'active' : '' ">
         <div class="flex-start">
           <i class="fas fa-smile"></i>
@@ -136,5 +138,4 @@
     <script src="./assets/dati.js" charset="utf-8"></script>
     <script src="./assets/main.js" charset="utf-8"></script>
   </body>
-</html>
 </html>

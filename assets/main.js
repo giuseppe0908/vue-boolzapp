@@ -8,8 +8,9 @@ var app = new Vue({
       indice: null,
       // show: false,
       dark: false,
-      sinistra: "active",
+      sinistra: true,
       destra: false,
+
     },
 
     methods: {
@@ -23,7 +24,16 @@ var app = new Vue({
           }else {
           return "";
           }
-
+        },
+        ora_minuti:function(data){
+         let split = data.split(' ');
+         let split_date = split[0].split('/');
+         let new_date = split_date[2] + '-' + split_date[1] + '-' + split_date[0] + ' '+ split[1];
+         let nuova_data = new Date(new_date);
+         // console.log(nuovaData);
+         let ora = nuova_data.getHours();
+         let min = nuova_data.getMinutes()
+         return ora + ':' + min;
         },
        // getTime: function(data,i){
        //   let date = new Date(data);
@@ -85,16 +95,21 @@ var app = new Vue({
       //CREO LA FUONZIONE PER  ELIMINARE IL MESSAGGIO
       remove:function(i){
         this.contacts[this.index].messages.splice(i, 1);
-        // console.log(this.contacts[this.index].messages);
-
       },
       //CREO LA FUONZIONE PER AGGIUNGERE MODALITA DARK-MODE
       dark_mod:function(){
         this.dark = !this.dark;
       },
+
       mostra:function(i) {
         this.index = i;
-        console.log("csicji");
+        this.destra = true;
+        this.sinistra = false;
+      },
+
+      lista_mex: function (){
+        this.sinistra = true;
+        this.destra = false;
       }
     }
 
